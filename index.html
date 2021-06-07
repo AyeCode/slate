@@ -335,9 +335,28 @@
           </li>
           <li>
             <a href="#countries" class="toc-h1 toc-link" data-title="Countries">Countries</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#countries-properties" class="toc-h2 toc-link" data-title="Countries properties">Countries properties</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-a-country" class="toc-h2 toc-link" data-title="Retrieve a country">Retrieve a country</a>
+                  </li>
+                  <li>
+                    <a href="#list-all-countries" class="toc-h2 toc-link" data-title="List all countries">List all countries</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#fields" class="toc-h1 toc-link" data-title="Fields">Fields</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fields-properties" class="toc-h2 toc-link" data-title="Fields properties">Fields properties</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-a-field" class="toc-h2 toc-link" data-title="Retrieve a field">Retrieve a field</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#markers" class="toc-h1 toc-link" data-title="Markers">Markers</a>
@@ -531,7 +550,388 @@
 <li>Note that the request body is <em>not</em> signed as per the OAuth spec.</li>
 <li>If including parameters in your request, it saves a lot of trouble if you can order your items alphabetically.</li>
 </ul>
-<h1 id='countries'>Countries</h1><h1 id='fields'>Fields</h1><h1 id='markers'>Markers</h1><h1 id='types'>Types</h1><h1 id='reviews'>Reviews</h1><h1 id='settings'>Settings</h1><h1 id='system-status'>System Status</h1><h1 id='taxonomies'>Taxonomies</h1>
+<h1 id='countries'>Countries</h1>
+<p>REST API End Points for managing and checking GD Countries.</p>
+<h2 id='countries-properties'>Countries properties</h2>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Unique identifier for the object. <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Name of country.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>Title for country.</td>
+</tr>
+<tr>
+<td><code>iso2</code></td>
+<td>string</td>
+<td>iso2 code for country</td>
+</tr>
+<tr>
+<td><code>iso3</code></td>
+<td>string</td>
+<td>iso3 code for country</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-a-country'>Retrieve a country</h2>
+<p>This API lets you retrieve and view a specific country by name.</p>
+<h3 id='http-request'>HTTP request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wp-json/geodir/v2/countries/&lt;name&gt;</h6>
+    </div>
+</div>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://example.com/wp-json/geodir/v2/countries/Afghanistan <span class="se">\</span>
+    <span class="nt">-u</span> consumer_key:consumer_secret
+</code></pre></div>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"iso2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"iso3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wp-json/geodir/v2/countries/0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wp-json/geodir/v2/countries"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='list-all-countries'>List all countries</h2>
+<p>This API helps you to list all the countries that have been created.</p>
+<h3 id='http-request-2'>HTTP request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wp-json/geodir/v2/countries</h6>
+    </div>
+</div>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://example.com/wp-json/geodir/v2/countries <span class="se">\</span>
+    <span class="nt">-u</span> consumer_key:consumer_secret
+</code></pre></div>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"iso2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"iso3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wp-json/geodir/v2/countries/0"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wp-json/geodir/v2/countries"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Åland Islands"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Åland Islands"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"iso2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"iso3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wp-json/geodir/v2/countries/0"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wp-json/geodir/v2/countries"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h1 id='fields'>Fields</h1>
+<p>REST API End Points for managing and checking GD Fields.</p>
+<h2 id='fields-properties'>Fields properties</h2>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Unique identifier for the object. <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>Post type slug.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>unique field key.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>field title.</td>
+</tr>
+<tr>
+<td><code>admin_title</code></td>
+<td>string</td>
+<td>field title for admin view.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>field description.</td>
+</tr>
+<tr>
+<td><code>data_type</code></td>
+<td>string</td>
+<td>field datatype.( TEXT, NUMBER, VARCHAR )</td>
+</tr>
+<tr>
+<td><code>field_type</code></td>
+<td>string</td>
+<td>field type it could be ( text, select, checkbox, radio, textarea, address, category, url, email, phone, datepicker)</td>
+</tr>
+<tr>
+<td><code>field_type_key</code></td>
+<td>string</td>
+<td>field type key.</td>
+</tr>
+<tr>
+<td><code>decimal_point</code></td>
+<td>string</td>
+<td>Decimal point.</td>
+</tr>
+<tr>
+<td><code>default_value</code></td>
+<td>string</td>
+<td>Default value of field.</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>string</td>
+<td>Placeholder of field.</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td>string</td>
+<td>Required field.</td>
+</tr>
+<tr>
+<td><code>required_msg</code></td>
+<td>string</td>
+<td>Required message.</td>
+</tr>
+<tr>
+<td><code>validation_pattern</code></td>
+<td>string</td>
+<td>Validation pattern for field.</td>
+</tr>
+<tr>
+<td><code>validation_msg</code></td>
+<td>string</td>
+<td>Validation message for field.</td>
+</tr>
+<tr>
+<td><code>option_values</code></td>
+<td>string</td>
+<td>Optional value for optional fields like select, checkbox lists, list.</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td>string</td>
+<td>display location for field.</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>string</td>
+<td>order of field.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>string</td>
+<td>field icon.</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>string</td>
+<td>field class.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>1 for active and 0 for inactive.</td>
+</tr>
+<tr>
+<td><code>packages</code></td>
+<td>string</td>
+<td>comma separated package ids for the field, for which field is available</td>
+</tr>
+<tr>
+<td><code>tab_parent</code></td>
+<td>string</td>
+<td>Field parent tab.</td>
+</tr>
+<tr>
+<td><code>tab_level</code></td>
+<td>string</td>
+<td>Field tab level.</td>
+</tr>
+<tr>
+<td><code>sorting</code></td>
+<td>string</td>
+<td>Show field in post sorting?</td>
+</tr>
+<tr>
+<td><code>searching</code></td>
+<td>string</td>
+<td>Show field in post search?</td>
+</tr>
+<tr>
+<td><code>extra_fields</code></td>
+<td>string</td>
+<td>Field extra setting</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-a-field'>Retrieve a field</h2>
+<p>This API lets you retrieve and view a specific field by name.</p>
+<h3 id='http-request'>HTTP request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wp-json/geodir/v2/&lt;fields&gt;</h6>
+    </div>
+</div>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://example.com//wp-json/geodir/v2/fields <span class="se">\</span>
+    <span class="nt">-u</span> consumer_key:consumer_secret
+</code></pre></div>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gd_event"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"package_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Package"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"admin_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Package"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Select your package."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"field_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"field_type_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"package_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"decimal_point"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"required_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"validation_pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"validation_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"option_values"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fas fa-dollar-sign"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"packages"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tab_parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tab_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sorting"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"searching"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"extra_fields"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://ppldb.com/v2/wp-json/geodir/v2/fields/41"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://ppldb.com/v2/wp-json/geodir/v2/fields"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gd_event"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expire_date"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Expire Date"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"admin_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Expire Date"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Post expire date, usually set automatically. Leave blank to set expire date &amp;quot;Never&amp;quot;."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"field_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datepicker"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"field_type_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expire_date"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"decimal_point"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"required_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"validation_pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"validation_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"option_values"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fas fa-clock"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"packages"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tab_parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tab_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sorting"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"searching"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"extra_fields"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://ppldb.com/v2/wp-json/geodir/v2/fields/42"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://ppldb.com/v2/wp-json/geodir/v2/fields"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h1 id='markers'>Markers</h1><h1 id='types'>Types</h1><h1 id='reviews'>Reviews</h1><h1 id='settings'>Settings</h1><h1 id='system-status'>System Status</h1><h1 id='taxonomies'>Taxonomies</h1>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
